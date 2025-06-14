@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dayflux Beta - Guided Breathwork for Better Sleep & Recovery</title>
+    <meta name="description" content="Join the exclusive Dayflux beta. Guided breathwork techniques for better sleep, faster recovery, and sharper focus. Science-backed breathing exercises.">
+    
+    <!-- Favicon - Using relative path for Netlify -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./dayfluxlogo-new.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./dayfluxlogo-new.png">
+    <link rel="apple-touch-icon" href="./dayfluxlogo-new.png">
+    <link rel="shortcut icon" href="./dayfluxlogo-new.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Updated to use your brand colors */
+            --primary-color: #5A8DBD;
+            --secondary-color: #8C7AAE;
+            --accent-color: #7BA88C;
+            --dark-bg: #121A23;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #D0D5DA;
+            --text-secondary: #B0B6BC;
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --gradient-accent: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 80%, rgba(90, 141, 189, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(140, 122, 174, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(123, 168, 140, 0.2) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { width: 4px; height: 4px; top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 6px; height: 6px; top: 60%; left: 80%; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 3px; height: 3px; top: 80%; left: 20%; animation-delay: 4s; }
+        .particle:nth-child(4) { width: 5px; height: 5px; top: 30%; left: 70%; animation-delay: 1s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) opacity(0.3); }
+            50% { transform: translateY(-20px) opacity(0.8); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0 120px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        /* Logo Animation Container */
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            margin: 40px auto;
+            position: relative;
+        }
+
+        .logo-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 3s ease-in-out infinite;
+            box-shadow: 0 0 40px rgba(90, 141, 189, 0.3);
+            overflow: hidden;
+            position: relative;
+            background: transparent;
+        }
+
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Fallback emoji styling */
+        .logo-fallback {
+            font-size: 48px;
+            position: relative;
+            z-index: 2;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(90, 141, 189, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 0 60px rgba(90, 141, 189, 0.5); }
+        }
+
+        /* Benefits List */
+        .benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 60px 0;
+        }
+
+        .benefit-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px 40px;
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            width: 100%;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(90, 141, 189, 0.3);
+        }
+
+        .benefit-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .benefit-icon {
+            font-size: 48px;
+            flex-shrink: 0;
+            width: 80px;
+            text-align: center;
+        }
+
+        .benefit-content {
+            flex: 1;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .benefit-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Email Capture Section */
+        .signup-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signup-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(90, 141, 189, 0.1), transparent);
+            animation: rotate 10s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .signup-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .signup-section p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        /* Form Styles */
+        .signup-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 18px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(90, 141, 189, 0.2);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 24px 0;
+            text-align: left;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            accent-color: var(--primary-color);
+        }
+
+        .checkbox-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px 24px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(90, 141, 189, 0.3);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 80px;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: linear-gradient(135deg, #7BA88C, #4F8C75);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 0 80px;
+            }
+            
+            .benefit-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+                padding: 30px 20px;
+            }
+
+            .benefit-icon {
+                width: auto;
+            }
+            
+            .signup-section {
+                padding: 40px 20px;
+                margin: 60px 0;
+            }
+            
+            .container {
+                padding: 0 16px;
+            }
+
+            .logo-circle img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">Dayflux</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Guided breathwork for better sleep, faster recovery & sharper focus</h1>
+                    <p class="subtitle">Join our exclusive beta and discover the power of science-backed breathing techniques</p>
+                    
+                    <div class="logo-container">
+                        <div class="logo-circle" id="logoCircle">
+                            <img src="./dayfluxlogo-new.png" 
+                                 alt="Dayflux Logo" 
+                                 id="logoImage"
+                                 style="display: none;">
+                            <div class="logo-fallback" id="logoFallback">🧘‍♀️</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Benefits List -->
+                    <div class="benefits">
+                        <div class="benefit-card">
+                            <span class="benefit-icon">🌙</span>
+                            <div class="benefit-content">
+                                <h3>Better Sleep</h3>
+                                <p>Fall asleep faster with guided evening sessions designed to calm your mind and prepare your body for rest</p>
+                            </div>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">🔋</span>
+                            <div class="benefit-content">
+                                <h3>Faster Recovery</h3>
+                                <p>Reduce stress and inflammation with targeted breathing patterns that activate your body's natural healing response</p>
+                            </div>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">🧠</span>
+                            <div class="benefit-content">
+                                <h3>Sharper Focus</h3>
+                                <p>Enhance cognitive performance and mental clarity with energizing breath techniques for peak productivity</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Email Capture Section -->
+            <section class="signup-section">
+                <h2>Join the Beta</h2>
+                <p>Be among the first to experience Dayflux and help shape the future of mindful breathing</p>
+                
+                <form class="signup-form" id="signupForm" name="beta-signup" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
+                    <input type="hidden" name="form-name" value="beta-signup" />
+                    <p style="display: none;">
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
+                    <div class="form-group">
+                        <input 
+                            type="email" 
+                            class="form-input" 
+                            name="email"
+                            placeholder="Enter your email address"
+                            required
+                            id="emailInput"
+                        >
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox" name="consent" id="consent" required>
+                        <label for="consent" class="checkbox-label">
+                            I agree to receive the TestFlight link and beta updates from Dayflux. I understand I can unsubscribe at any time.
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-rocket"></i> Get Early Access
+                    </button>
+                </form>
+                
+                <div class="success-message" id="successMessage">
+                    <h3>🎉 Welcome to the Dayflux Beta!</h3>
+                    <p>Check your email for your TestFlight invitation and get ready to transform your breathing practice.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Dayflux. All rights reserved. | Contact: dev.blsmdrive@gmail.com</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Logo loading with local file paths for Netlify
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoImage = document.getElementById('logoImage');
+            const logoFallback = document.getElementById('logoFallback');
+            
+            // Test local logo file paths that work with Netlify
+            const logoUrls = [
+                './dayfluxlogo-new.png',
+                './logo-new.png',
+                './logo.png',
+                './dayflux-logo.png'
+            ];
+            
+            function tryLoadLogo(index = 0) {
+                if (index >= logoUrls.length) {
+                    console.log('All logo URLs failed, using fallback emoji');
+                    return;
+                }
+                
+                const testImg = new Image();
+                testImg.onload = function() {
+                    logoImage.src = logoUrls[index];
+                    logoImage.style.display = 'block';
+                    logoFallback.style.display = 'none';
+                    console.log('Logo loaded successfully from:', logoUrls[index]);
+                };
+                testImg.onerror = function() {
+                    console.log('Failed to load logo from:', logoUrls[index]);
+                    tryLoadLogo(index + 1);
+                };
+                testImg.src = logoUrls[index];
+            }
+            
+            // Start trying to load the logo
+            tryLoadLogo();
+        });
+
+        // Form submission handling
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            const email = document.getElementById('emailInput').value;
+            const consent = document.getElementById('consent').checked;
+            
+            if (!email || !consent) {
+                e.preventDefault();
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Show success message immediately for better UX
+            document.getElementById('successMessage').classList.add('show');
+            
+            // Track the conversion (add your analytics code here)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'conversion', {
+                    'send_to': 'YOUR_CONVERSION_ID',
+                    'value': 1.0,
+                    'currency': 'USD'
+                });
+            }
+            
+            // Let Netlify handle the form submission
+            // Form will redirect to success.html after submission
+        });
+
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe benefit cards
+            document.querySelectorAll('.benefit-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+
+        // Add UTM tracking for ads
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmSource = urlParams.get('utm_source');
+        const utmMedium = urlParams.get('utm_medium');
+        const utmCampaign = urlParams.get('utm_campaign');
+
+        if (utmSource) {
+            console.log('Traffic source:', { utmSource, utmMedium, utmCampaign });
+            // Store UTM parameters for form submission
+            sessionStorage.setItem('utm_data', JSON.stringify({ utmSource, utmMedium, utmCampaign }));
+        }
+    </script>
+
+    <!-- Google Analytics (replace with your tracking ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_TRACKING_ID');
+    </script>
+</body>
+</html>
