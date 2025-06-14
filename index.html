@@ -6,7 +6,7 @@
     <title>Dayflux Beta - Guided Breathwork for Better Sleep & Recovery</title>
     <meta name="description" content="Join the exclusive Dayflux beta. Guided breathwork techniques for better sleep, faster recovery, and sharper focus. Science-backed breathing exercises.">
     
-    <!-- Favicon - Using relative path for Netlify -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="./dayfluxlogo-new.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./dayfluxlogo-new.png">
     <link rel="apple-touch-icon" href="./dayfluxlogo-new.png">
@@ -530,11 +530,8 @@
                 <h2>Join the Beta</h2>
                 <p>Be among the first to experience Dayflux and help shape the future of mindful breathing</p>
                 
-                <form class="signup-form" id="signupForm" name="beta-signup" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
-                    <input type="hidden" name="form-name" value="beta-signup" />
-                    <p style="display: none;">
-                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-                    </p>
+                <!-- Discord Webhook Form -->
+                <form class="signup-form" id="signupForm">
                     <div class="form-group">
                         <input 
                             type="email" 
@@ -575,12 +572,11 @@
 
     <!-- JavaScript -->
     <script>
-        // Logo loading with local file paths for Netlify
+        // Logo loading
         document.addEventListener('DOMContentLoaded', function() {
             const logoImage = document.getElementById('logoImage');
             const logoFallback = document.getElementById('logoFallback');
             
-            // Test local logo file paths that work with Netlify
             const logoUrls = [
                 './dayfluxlogo-new.png',
                 './logo-new.png',
@@ -612,36 +608,84 @@
             tryLoadLogo();
         });
 
-        // Form submission handling
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
+        // Form submission with Discord webhook
+        document.getElementById('signupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
             const email = document.getElementById('emailInput').value;
             const consent = document.getElementById('consent').checked;
             
             if (!email || !consent) {
-                e.preventDefault();
                 alert('Please fill in all required fields.');
                 return;
             }
             
-            // Show success message immediately for better UX
-            document.getElementById('successMessage').classList.add('show');
+            // STEP 1: Replace with your Discord webhook URL
+            const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL_HERE';
             
-            // Track the conversion (add your analytics code here)
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'conversion', {
-                    'send_to': 'YOUR_CONVERSION_ID',
-                    'value': 1.0,
-                    'currency': 'USD'
+            // Create Discord message
+            const discordMessage = {
+                embeds: [{
+                    title: "🎉 New Dayflux Beta Signup!",
+                    color: 0x5A8DBD, // Your brand color
+                    fields: [
+                        {
+                            name: "📧 Email",
+                            value: email,
+                            inline: true
+                        },
+                        {
+                            name: "✅ Consent",
+                            value: consent ? "Yes" : "No",
+                            inline: true
+                        },
+                        {
+                            name: "🕐 Time",
+                            value: new Date().toLocaleString(),
+                            inline: true
+                        }
+                    ],
+                    footer: {
+                        text: "Dayflux Beta Signups"
+                    }
+                }]
+            };
+            
+            try {
+                // Send to Discord
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(discordMessage)
                 });
+                
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById('successMessage').classList.add('show');
+                    document.getElementById('signupForm').style.display = 'none';
+                    
+                    // Track the conversion
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'conversion', {
+                            'send_to': 'YOUR_CONVERSION_ID',
+                            'value': 1.0,
+                            'currency': 'USD'
+                        });
+                    }
+                } else {
+                    throw new Error('Failed to send');
+                }
+                
+            } catch (error) {
+                console.error('Error sending to Discord:', error);
+                alert('Something went wrong. Please try again or contact us directly.');
             }
-            
-            // Let Netlify handle the form submission
-            // Form will redirect to success.html after submission
         });
 
-        // Add some interactive elements
+        // Add scroll animations
         document.addEventListener('DOMContentLoaded', function() {
-            // Animate elements on scroll
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
@@ -664,18 +708,6 @@
                 observer.observe(card);
             });
         });
-
-        // Add UTM tracking for ads
-        const urlParams = new URLSearchParams(window.location.search);
-        const utmSource = urlParams.get('utm_source');
-        const utmMedium = urlParams.get('utm_medium');
-        const utmCampaign = urlParams.get('utm_campaign');
-
-        if (utmSource) {
-            console.log('Traffic source:', { utmSource, utmMedium, utmCampaign });
-            // Store UTM parameters for form submission
-            sessionStorage.setItem('utm_data', JSON.stringify({ utmSource, utmMedium, utmCampaign }));
-        }
     </script>
 
     <!-- Google Analytics (replace with your tracking ID) -->
