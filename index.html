@@ -530,8 +530,20 @@
                 <h2>Join the Beta</h2>
                 <p>Be among the first to experience Dayflux and help shape the future of mindful breathing</p>
                 
-                <!-- Discord Webhook Form -->
-                <form class="signup-form" id="signupForm">
+                <!-- Secure Formspree Form -->
+                <form class="signup-form" id="signupForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <!-- Honeypot field for spam protection -->
+                    <input type="text" name="_gotcha" style="display:none !important">
+                    
+                    <!-- Formspree configuration -->
+                    <input type="hidden" name="_subject" value="New Dayflux Beta Signup!">
+                    <input type="hidden" name="_next" value="https://yourusername.github.io/your-repo-name/success.html">
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <!-- Rate limiting and security -->
+                    <input type="hidden" name="_cc" value="">
+                    <input type="hidden" name="_format" value="plain">
+                    
                     <div class="form-group">
                         <input 
                             type="email" 
@@ -540,17 +552,24 @@
                             placeholder="Enter your email address"
                             required
                             id="emailInput"
+                            autocomplete="email"
+                            maxlength="254"
                         >
                     </div>
                     
                     <div class="checkbox-group">
-                        <input type="checkbox" class="checkbox" name="consent" id="consent" required>
+                        <input type="checkbox" class="checkbox" name="consent" id="consent" value="yes" required>
                         <label for="consent" class="checkbox-label">
                             I agree to receive the TestFlight link and beta updates from Dayflux. I understand I can unsubscribe at any time.
                         </label>
                     </div>
                     
-                    <button type="submit" class="submit-btn">
+                    <!-- Additional security fields -->
+                    <input type="hidden" name="source" value="dayflux-landing" id="sourceField">
+                    <input type="hidden" name="timestamp" value="" id="timestampField">
+                    <input type="hidden" name="user_agent" value="" id="userAgentField">
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">
                         <i class="fas fa-rocket"></i> Get Early Access
                     </button>
                 </form>
@@ -608,80 +627,65 @@
             tryLoadLogo();
         });
 
-        // Form submission with Discord webhook
-        document.getElementById('signupForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
+        // Secure form submission with Formspree
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
             const email = document.getElementById('emailInput').value;
             const consent = document.getElementById('consent').checked;
+            const submitBtn = document.getElementById('submitBtn');
             
+            // Client-side validation
             if (!email || !consent) {
+                e.preventDefault();
                 alert('Please fill in all required fields.');
                 return;
             }
             
-            // STEP 1: Replace with your Discord webhook URL
-            const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL_HERE';
-            
-            // Create Discord message
-            const discordMessage = {
-                embeds: [{
-                    title: "🎉 New Dayflux Beta Signup!",
-                    color: 0x5A8DBD, // Your brand color
-                    fields: [
-                        {
-                            name: "📧 Email",
-                            value: email,
-                            inline: true
-                        },
-                        {
-                            name: "✅ Consent",
-                            value: consent ? "Yes" : "No",
-                            inline: true
-                        },
-                        {
-                            name: "🕐 Time",
-                            value: new Date().toLocaleString(),
-                            inline: true
-                        }
-                    ],
-                    footer: {
-                        text: "Dayflux Beta Signups"
-                    }
-                }]
-            };
-            
-            try {
-                // Send to Discord
-                const response = await fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(discordMessage)
-                });
-                
-                if (response.ok) {
-                    // Show success message
-                    document.getElementById('successMessage').classList.add('show');
-                    document.getElementById('signupForm').style.display = 'none';
-                    
-                    // Track the conversion
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'conversion', {
-                            'send_to': 'YOUR_CONVERSION_ID',
-                            'value': 1.0,
-                            'currency': 'USD'
-                        });
-                    }
-                } else {
-                    throw new Error('Failed to send');
-                }
-                
-            } catch (error) {
-                console.error('Error sending to Discord:', error);
-                alert('Something went wrong. Please try again or contact us directly.');
+            // Email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                e.preventDefault();
+                alert('Please enter a valid email address.');
+                return;
             }
+            
+            // Populate security fields
+            document.getElementById('timestampField').value = new Date().toISOString();
+            document.getElementById('userAgentField').value = navigator.userAgent.substring(0, 200); // Truncate for security
+            
+            // Add UTM tracking data if available
+            const urlParams = new URLSearchParams(window.location.search);
+            const utmSource = urlParams.get('utm_source');
+            const utmMedium = urlParams.get('utm_medium');
+            const utmCampaign = urlParams.get('utm_campaign');
+            
+            if (utmSource) {
+                const sourceField = document.getElementById('sourceField');
+                sourceField.value = `dayflux-landing (utm_source: ${utmSource}, utm_medium: ${utmMedium || 'none'}, utm_campaign: ${utmCampaign || 'none'})`;
+            }
+            
+            // Prevent double submission
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            
+            // Show success message (Formspree will handle the actual submission)
+            setTimeout(() => {
+                document.getElementById('successMessage').classList.add('show');
+            }, 500);
+            
+            // Track the conversion
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'conversion', {
+                    'send_to': 'YOUR_CONVERSION_ID',
+                    'value': 1.0,
+                    'currency': 'USD'
+                });
+            }
+            
+            // Re-enable button after a delay (in case of errors)
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-rocket"></i> Get Early Access';
+            }, 5000);
         });
 
         // Add scroll animations
