@@ -530,18 +530,10 @@
                 <h2>Join the Beta</h2>
                 <p>Be among the first to experience Dayflux and help shape the future of mindful breathing</p>
                 
-                <!-- Secure Formspree Form -->
-                <form class="signup-form" id="signupForm" action="https://formspree.io/f/xanjjwde" method="POST">
+                <!-- Secure Formspree Form - No action to prevent redirects -->
+                <form class="signup-form" id="signupForm">
                     <!-- Honeypot field for spam protection -->
                     <input type="text" name="_gotcha" style="display:none !important">
-                    
-                    <!-- Formspree configuration -->
-                    <input type="hidden" name="_subject" value="New Dayflux Beta Signup!">
-                    <input type="hidden" name="_captcha" value="false">
-                    
-                    <!-- Rate limiting and security -->
-                    <input type="hidden" name="_cc" value="">
-                    <input type="hidden" name="_format" value="plain">
                     
                     <div class="form-group">
                         <input 
@@ -626,84 +618,98 @@
             tryLoadLogo();
         });
 
-        // Secure form submission with Formspree
-        document.getElementById('signupForm').addEventListener('submit', async function(e) {
-            e.preventDefault(); // Prevent default form submission
+        // Secure form submission with Formspree - Enhanced to prevent redirects
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('signupForm');
             
-            const email = document.getElementById('emailInput').value;
-            const consent = document.getElementById('consent').checked;
-            const submitBtn = document.getElementById('submitBtn');
-            const form = this;
-            
-            // Client-side validation
-            if (!email || !consent) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            // Email validation regex
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            
-            // Populate security fields
-            document.getElementById('timestampField').value = new Date().toISOString();
-            document.getElementById('userAgentField').value = navigator.userAgent.substring(0, 200);
-            
-            // Add UTM tracking data if available
-            const urlParams = new URLSearchParams(window.location.search);
-            const utmSource = urlParams.get('utm_source');
-            const utmMedium = urlParams.get('utm_medium');
-            const utmCampaign = urlParams.get('utm_campaign');
-            
-            if (utmSource) {
-                const sourceField = document.getElementById('sourceField');
-                sourceField.value = `dayflux-landing (utm_source: ${utmSource}, utm_medium: ${utmMedium || 'none'}, utm_campaign: ${utmCampaign || 'none'})`;
-            }
-            
-            // Prevent double submission
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-            
-            try {
-                // Submit form data to Formspree using fetch
-                const formData = new FormData(form);
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault(); // Always prevent default first
+                e.stopPropagation(); // Stop event bubbling
                 
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
+                const email = document.getElementById('emailInput').value;
+                const consent = document.getElementById('consent').checked;
+                const submitBtn = document.getElementById('submitBtn');
                 
-                if (response.ok) {
-                    // Show success message instead of redirecting
-                    document.getElementById('successMessage').classList.add('show');
-                    form.style.display = 'none';
-                    
-                    // Track the conversion
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'conversion', {
-                            'send_to': 'YOUR_CONVERSION_ID',
-                            'value': 1.0,
-                            'currency': 'USD'
-                        });
-                    }
-                } else {
-                    throw new Error('Form submission failed');
+                // Client-side validation
+                if (!email || !consent) {
+                    alert('Please fill in all required fields.');
+                    return false;
                 }
                 
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                alert('Something went wrong. Please try again or contact us directly.');
+                // Email validation regex
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return false;
+                }
                 
-                // Re-enable button on error
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-rocket"></i> Get Early Access';
-            }
+                // Populate security fields
+                document.getElementById('timestampField').value = new Date().toISOString();
+                document.getElementById('userAgentField').value = navigator.userAgent.substring(0, 200);
+                
+                // Add UTM tracking data if available
+                const urlParams = new URLSearchParams(window.location.search);
+                const utmSource = urlParams.get('utm_source');
+                const utmMedium = urlParams.get('utm_medium');
+                const utmCampaign = urlParams.get('utm_campaign');
+                
+                if (utmSource) {
+                    const sourceField = document.getElementById('sourceField');
+                    sourceField.value = `dayflux-landing (utm_source: ${utmSource}, utm_medium: ${utmMedium || 'none'}, utm_campaign: ${utmCampaign || 'none'})`;
+                }
+                
+                // Prevent double submission
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+                
+                try {
+                    // Create FormData from the form
+                    const formData = new FormData();
+                    formData.append('email', email);
+                    formData.append('consent', consent ? 'yes' : 'no');
+                    formData.append('_subject', 'New Dayflux Beta Signup!');
+                    formData.append('source', document.getElementById('sourceField').value);
+                    formData.append('timestamp', document.getElementById('timestampField').value);
+                    formData.append('user_agent', document.getElementById('userAgentField').value);
+                    
+                    // Submit to Formspree using fetch
+                    const response = await fetch('https://formspree.io/f/xanjjwde', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        // Show success message
+                        document.getElementById('successMessage').classList.add('show');
+                        form.style.display = 'none';
+                        
+                        // Track the conversion
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'conversion', {
+                                'send_to': 'YOUR_CONVERSION_ID',
+                                'value': 1.0,
+                                'currency': 'USD'
+                            });
+                        }
+                    } else {
+                        const data = await response.json();
+                        throw new Error(data.error || 'Form submission failed');
+                    }
+                    
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    alert('Something went wrong. Please try again or contact us directly at dev.blsmdrive@gmail.com');
+                    
+                    // Re-enable button on error
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-rocket"></i> Get Early Access';
+                }
+                
+                return false; // Extra safety to prevent form submission
+            });
         });
 
         // Add scroll animations
