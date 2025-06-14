@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Dayflux Beta!</title>
+    <title>Thank You - Dayflux Beta</title>
+    <meta name="description" content="Thank you for joining the Dayflux beta! We'll be in touch soon.">
+    <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/png" href="./dayfluxlogo-new.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -96,6 +98,38 @@
             margin-bottom: 30px;
         }
 
+        .next-steps {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .next-steps h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .next-steps li {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .next-steps li::before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+        }
+
         .back-btn {
             display: inline-block;
             padding: 12px 24px;
@@ -106,6 +140,7 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
+            margin-top: 20px;
         }
 
         .back-btn:hover {
@@ -138,7 +173,17 @@
         </div>
         
         <h1>Welcome to the Dayflux Beta!</h1>
-        <p>Thank you for joining! We'll send you the TestFlight link and beta updates soon. Get ready to transform your breathing practice.</p>
+        <p>Thank you for joining! Your submission has been received successfully.</p>
+        
+        <div class="next-steps">
+            <h3>What happens next?</h3>
+            <ul>
+                <li>You'll receive a confirmation email shortly</li>
+                <li>We'll send you the TestFlight link when ready</li>
+                <li>Get periodic updates on our development progress</li>
+                <li>Be among the first to experience guided breathwork</li>
+            </ul>
+        </div>
         
         <a href="/" class="back-btn">← Back to Home</a>
     </div>
@@ -156,6 +201,14 @@
             };
             testImg.src = './dayfluxlogo-new.png';
         });
+
+        // Track success page view
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                'page_title': 'Beta Signup Success',
+                'page_location': window.location.href
+            });
+        }
     </script>
 </body>
 </html>
