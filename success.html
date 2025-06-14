@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Dayflux Beta!</title>
+    <link rel="icon" type="image/png" href="./dayfluxlogo-new.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #5A8DBD;
+            --secondary-color: #8C7AAE;
+            --accent-color: #7BA88C;
+            --dark-bg: #121A23;
+            --text-primary: #D0D5DA;
+            --text-secondary: #B0B6BC;
+            --gradient-accent: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-container {
+            text-align: center;
+            max-width: 600px;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            margin: 20px;
+        }
+
+        .logo-container {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .logo-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .logo-fallback {
+            font-size: 32px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="logo-container">
+            <div class="logo-circle">
+                <img src="./dayfluxlogo-new.png" alt="Dayflux Logo" style="display: none;" id="logoImage">
+                <div class="logo-fallback" id="logoFallback">🎉</div>
+            </div>
+        </div>
+        
+        <h1>Welcome to the Dayflux Beta!</h1>
+        <p>Thank you for joining! We'll send you the TestFlight link and beta updates soon. Get ready to transform your breathing practice.</p>
+        
+        <a href="/" class="back-btn">← Back to Home</a>
+    </div>
+
+    <script>
+        // Try to load the logo
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoImage = document.getElementById('logoImage');
+            const logoFallback = document.getElementById('logoFallback');
+            
+            const testImg = new Image();
+            testImg.onload = function() {
+                logoImage.style.display = 'block';
+                logoFallback.style.display = 'none';
+            };
+            testImg.src = './dayfluxlogo-new.png';
+        });
+    </script>
+</body>
+</html>
