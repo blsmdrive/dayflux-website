@@ -260,7 +260,49 @@
             margin: 0;
         }
 
-        /* Email Capture Section */
+        /* Email Capture Section - Top Version */
+        .signup-section-top {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .signup-section-top::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(90, 141, 189, 0.1), transparent);
+            animation: rotate 10s linear infinite;
+            z-index: -1;
+        }
+
+        .signup-section-top h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .signup-section-top p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
         .signup-section {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
@@ -436,6 +478,15 @@
                 padding: 40px 0 80px;
             }
             
+            .signup-section-top {
+                padding: 30px 20px;
+                margin: 30px 0;
+            }
+            
+            .signup-section-top h2 {
+                font-size: 1.8rem;
+            }
+            
             .benefit-card {
                 flex-direction: column;
                 text-align: center;
@@ -488,6 +539,52 @@
                     <h1>Guided breathwork for better sleep, faster recovery & sharper focus</h1>
                     <p class="subtitle">Join our exclusive beta and discover the power of science-backed breathing techniques</p>
                     
+                    <!-- Email Capture Section - Moved to Top -->
+                    <div class="signup-section-top">
+                        <h2>Join the Beta</h2>
+                        <p>Be among the first to experience Dayflux and help shape the future of mindful breathing</p>
+                        
+                        <!-- Secure Formspree Form -->
+                        <form class="signup-form" id="signupForm">
+                            <!-- Honeypot field for spam protection -->
+                            <input type="text" name="_gotcha" style="display:none !important">
+                            
+                            <div class="form-group">
+                                <input 
+                                    type="email" 
+                                    class="form-input" 
+                                    name="email"
+                                    placeholder="Enter your email address"
+                                    required
+                                    id="emailInput"
+                                    autocomplete="email"
+                                    maxlength="254"
+                                >
+                            </div>
+                            
+                            <div class="checkbox-group">
+                                <input type="checkbox" class="checkbox" name="consent" id="consent" value="yes" required>
+                                <label for="consent" class="checkbox-label">
+                                    I agree to receive the TestFlight link and beta updates from Dayflux. I understand I can unsubscribe at any time.
+                                </label>
+                            </div>
+                            
+                            <!-- Additional security fields -->
+                            <input type="hidden" name="source" value="dayflux-landing" id="sourceField">
+                            <input type="hidden" name="timestamp" value="" id="timestampField">
+                            <input type="hidden" name="user_agent" value="" id="userAgentField">
+                            
+                            <button type="submit" class="submit-btn" id="submitBtn">
+                                <i class="fas fa-rocket"></i> Get Early Access
+                            </button>
+                        </form>
+                        
+                        <div class="success-message" id="successMessage">
+                            <h3>🎉 Welcome to the Dayflux Beta!</h3>
+                            <p>Check your email for your TestFlight invitation and get ready to transform your breathing practice.</p>
+                        </div>
+                    </div>
+                    
                     <div class="logo-container">
                         <div class="logo-circle" id="logoCircle">
                             <img src="./dayfluxlogo-new.png" 
@@ -522,52 +619,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <!-- Email Capture Section -->
-            <section class="signup-section">
-                <h2>Join the Beta</h2>
-                <p>Be among the first to experience Dayflux and help shape the future of mindful breathing</p>
-                
-                <!-- Secure Formspree Form - No action to prevent redirects -->
-                <form class="signup-form" id="signupForm">
-                    <!-- Honeypot field for spam protection -->
-                    <input type="text" name="_gotcha" style="display:none !important">
-                    
-                    <div class="form-group">
-                        <input 
-                            type="email" 
-                            class="form-input" 
-                            name="email"
-                            placeholder="Enter your email address"
-                            required
-                            id="emailInput"
-                            autocomplete="email"
-                            maxlength="254"
-                        >
-                    </div>
-                    
-                    <div class="checkbox-group">
-                        <input type="checkbox" class="checkbox" name="consent" id="consent" value="yes" required>
-                        <label for="consent" class="checkbox-label">
-                            I agree to receive the TestFlight link and beta updates from Dayflux. I understand I can unsubscribe at any time.
-                        </label>
-                    </div>
-                    
-                    <!-- Additional security fields -->
-                    <input type="hidden" name="source" value="dayflux-landing" id="sourceField">
-                    <input type="hidden" name="timestamp" value="" id="timestampField">
-                    <input type="hidden" name="user_agent" value="" id="userAgentField">
-                    
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        <i class="fas fa-rocket"></i> Get Early Access
-                    </button>
-                </form>
-                
-                <div class="success-message" id="successMessage">
-                    <h3>🎉 Welcome to the Dayflux Beta!</h3>
-                    <p>Check your email for your TestFlight invitation and get ready to transform your breathing practice.</p>
                 </div>
             </section>
         </div>
