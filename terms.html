@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Dayflux</title>
+    <link rel="icon" type="image/png" href="./dayfluxlogo-new.png">
+    <link rel="apple-touch-icon" href="./dayfluxlogo-new.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #5A8DBD;
+            --secondary-color: #8C7AAE;
+            --accent-color: #7BA88C;
+            --background: #E1E6EB;
+            --surface: #CBD4DE;
+            --text-primary: #203040;
+            --text-secondary: #304156;
+            --text-muted: #B0B6BC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: #FFFFFF;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--surface);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding: 64px 0;
+            background: linear-gradient(135deg, var(--background) 0%, #FFFFFF 100%);
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 42px;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+        
+        /* Content */
+        .content {
+            padding: 64px 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content h2 {
+            font-size: 28px;
+            margin: 48px 0 24px;
+            color: var(--text-primary);
+        }
+        
+        .content h3 {
+            font-size: 22px;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+        
+        .content p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        
+        .content ul {
+            margin-bottom: 20px;
+            padding-left: 32px;
+            color: var(--text-secondary);
+        }
+        
+        .content li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+        
+        .highlight-box {
+            background: var(--background);
+            border-left: 4px solid var(--primary-color);
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 8px;
+        }
+        
+        .highlight-box h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .content a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .content a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 64px 0 32px;
+            margin-top: 100px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+        
+        .footer-section h4 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: var(--primary-color);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            padding: 6px 0;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 32px;
+            }
+            
+            .content {
+                padding: 48px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="./dayfluxlogo-new.png" alt="Dayflux Logo">
+                Dayflux
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html" class="active">Terms</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Terms of Service</h1>
+            <p>Please read these terms carefully before using Dayflux.</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="content">
+        <div class="container">
+            <p><strong>Effective Date: January 2025</strong></p>
+            
+            <div class="highlight-box">
+                <h3>🫁 Simple Terms</h3>
+                <p>Dayflux is a guided breathwork application designed to help you improve your wellbeing through science-backed breathing techniques. Use it to enhance your sleep, recovery, and focus. We respect your privacy and your wellness journey.</p>
+            </div>
+
+            <h2>1. Acceptance of Terms</h2>
+            <p>By downloading, installing, or using Dayflux ("the App"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the App.</p>
+
+            <h2>2. Description of Service</h2>
+            <p>Dayflux is a breathwork application that provides guided breathing exercises for wellbeing and performance. The App provides:</p>
+            <ul>
+                <li>Guided breathing sessions for sleep, recovery, and focus</li>
+                <li>Customizable session durations and breathing patterns</li>
+                <li>Progress tracking and consistency monitoring</li>
+                <li>Visual and audio guidance for breathing techniques</li>
+                <li>Optional data synchronization</li>
+            </ul>
+
+            <h2>3. User Responsibilities</h2>
+            <h3>You agree to:</h3>
+            <ul>
+                <li>Use the App for personal, non-commercial purposes only</li>
+                <li>Follow breathing instructions safely and within your comfort zone</li>
+                <li>Not use the App while driving or operating machinery</li>
+                <li>Discontinue use if you experience any discomfort or adverse effects</li>
+                <li>Not attempt to reverse engineer or modify the App</li>
+                <li>Take responsibility for maintaining your device security</li>
+            </ul>
+
+            <h2>4. Privacy and Data</h2>
+            <p>Your privacy is important to us. Key points:</p>
+            <ul>
+                <li>All session data is stored locally on your device</li>
+                <li>We do not collect, store, or have access to your personal breathing data</li>
+                <li>No cloud synchronization unless explicitly enabled by you</li>
+                <li>For complete details, see our <a href="privacy.html">Privacy Policy</a></li>
+            </ul>
+
+            <h2>5. Health and Safety Disclaimer</h2>
+            <div class="highlight-box">
+                <h3>⚕️ Important Health Notice</h3>
+                <p>Dayflux is a wellness app and should not be used as a substitute for professional medical advice, diagnosis, or treatment. If you have any respiratory conditions, heart conditions, or other health concerns, please consult with healthcare professionals before using breathing exercises.</p>
+            </div>
+            
+            <p>The App is designed as a wellness and performance tool. It is not intended to:</p>
+            <ul>
+                <li>Diagnose, treat, cure, or prevent any medical condition</li>
+                <li>Replace professional medical care or therapy</li>
+                <li>Provide medical or psychological advice</li>
+                <li>Be used during pregnancy without medical consultation</li>
+            </ul>
+
+            <h3>Safety Precautions</h3>
+            <ul>
+                <li>Stop immediately if you feel dizzy, lightheaded, or uncomfortable</li>
+                <li>Never use the app while driving, swimming, or in unsafe environments</li>
+                <li>Start with shorter sessions and gradually increase duration</li>
+                <li>Breathe naturally and comfortably - never force your breathing</li>
+            </ul>
+
+            <h2>6. Australian Consumer Law</h2>
+            <p>As an Australian business, we acknowledge that:</p>
+            <ul>
+                <li>Nothing in these Terms excludes, restricts, or modifies any consumer rights under the Australian Consumer Law (ACL)</li>
+                <li>Our goods and services come with guarantees that cannot be excluded under Australian Consumer Law</li>
+                <li>You are entitled to a replacement or refund for a major failure and compensation for any other reasonably foreseeable loss or damage</li>
+                <li>You are also entitled to have the goods repaired or replaced if the goods fail to be of acceptable quality and the failure does not amount to a major failure</li>
+            </ul>
+
+            <h2>7. Intellectual Property</h2>
+            <p>All content, features, and functionality of Dayflux are owned by us and are protected by international copyright, trademark, and other intellectual property laws. You may not:</p>
+            <ul>
+                <li>Copy, modify, or distribute the App</li>
+                <li>Use our trademarks without permission</li>
+                <li>Remove any copyright or proprietary notices</li>
+                <li>Record or distribute our guided audio content</li>
+            </ul>
+
+            <h2>8. App Store Terms</h2>
+            <p>Your use of Dayflux is also subject to:</p>
+            <ul>
+                <li>Apple's App Store Terms of Service</li>
+                <li>Apple's End User License Agreement (EULA)</li>
+                <li>Any other terms imposed by Apple Inc.</li>
+            </ul>
+
+            <h2>9. Disclaimers and Limitations</h2>
+            <h3>No Warranties</h3>
+            <p>Dayflux is provided "as is" and "as available" without warranties of any kind, either express or implied, including but not limited to:</p>
+            <ul>
+                <li>Merchantability or fitness for a particular purpose</li>
+                <li>Accuracy, reliability, or completeness of the App</li>
+                <li>Uninterrupted or error-free operation</li>
+                <li>Specific health or wellness results from use of the App</li>
+            </ul>
+
+            <h3>Limitation of Liability</h3>
+            <p>To the fullest extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from:</p>
+            <ul>
+                <li>Your use or inability to use the App</li>
+                <li>Any errors or omissions in the App</li>
+                <li>Loss of data or device issues</li>
+                <li>Any health effects from breathing exercises</li>
+                <li>Reliance on information provided by the App</li>
+            </ul>
+
+            <h2>10. Indemnification</h2>
+            <p>You agree to indemnify and hold harmless Dayflux, its developers, and affiliates from any claims, damages, or expenses arising from your use of the App or violation of these Terms.</p>
+
+            <h2>11. Updates and Changes</h2>
+            <h3>App Updates</h3>
+            <p>We may update the App periodically to:</p>
+            <ul>
+                <li>Add new breathing techniques or sessions</li>
+                <li>Improve functionality and user experience</li>
+                <li>Fix bugs or security issues</li>
+                <li>Comply with changes in applicable laws</li>
+            </ul>
+
+            <h3>Terms Updates</h3>
+            <p>We reserve the right to modify these Terms at any time. If we make material changes:</p>
+            <ul>
+                <li>We'll update the "Effective Date" at the top</li>
+                <li>We'll notify you through the App if changes are significant</li>
+                <li>Continued use after changes constitutes acceptance</li>
+            </ul>
+
+            <h2>12. Termination</h2>
+            <p>You may stop using Dayflux at any time by deleting the App from your device. We reserve the right to:</p>
+            <ul>
+                <li>Discontinue the App with reasonable notice</li>
+                <li>Modify or discontinue features</li>
+                <li>Terminate access for violations of these Terms</li>
+            </ul>
+
+            <h2>13. Children's Use</h2>
+            <p>Dayflux is not intended for children under 13 years of age. We do not knowingly collect information from children under 13. Children should only use breathing exercises under adult supervision.</p>
+
+            <h2>14. Export Control</h2>
+            <p>You may not use or export the App except as authorized by United States law and the laws of the jurisdiction in which the App was obtained.</p>
+
+            <h2>15. Governing Law</h2>
+            <p>These Terms shall be governed by and construed in accordance with the laws of Australia and the State of New South Wales, without regard to conflict of law principles. Any disputes shall be resolved in the courts of New South Wales, Australia.</p>
+
+            <h2>16. Business Information</h2>
+            <p>Dayflux is operated by an Australian sole trader based in New South Wales. For business inquiries or legal matters, please contact us at the email address provided below.</p>
+
+            <h2>17. Severability</h2>
+            <p>If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary so that these Terms shall otherwise remain in full force and effect.</p>
+
+            <h2>18. Entire Agreement</h2>
+            <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and Dayflux regarding the use of the App and supersede all prior agreements and understandings.</p>
+
+            <h2>19. Contact Information</h2>
+            <p>If you have any questions about these Terms of Service, please contact us at:</p>
+            <ul>
+                <li>Email: <a href="mailto:dev.blsmdrive@gmail.com">dev.blsmdrive@gmail.com</a></li>
+                <li>Support Page: <a href="support.html">Support Center</a></li>
+            </ul>
+
+            <div class="highlight-box" style="margin-top: 48px;">
+                <h3>Thank You</h3>
+                <p>Thank you for choosing Dayflux to support your wellness journey. We're honored to be part of your breathwork practice and wish you peace, health, and wellbeing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="#">Download</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="support.html">Help Center</a></li>
+                        <li><a href="support.html#faq">FAQ</a></li>
+                        <li><a href="support.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="mailto:dev.blsmdrive@gmail.com">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dayflux. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
