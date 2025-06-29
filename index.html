@@ -3,32 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dayflux Beta - Guided Breathwork for Better Sleep & Recovery</title>
-    <meta name="description" content="Join the exclusive Dayflux beta. Guided breathwork techniques for better sleep, faster recovery, and sharper focus. Science-backed breathing exercises.">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="./dayfluxlogo-new.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./dayfluxlogo-new.png">
+    <title>Dayflux - Guided Breathwork for Better Sleep & Recovery</title>
+    <meta name="description" content="Transform your wellbeing with guided breathwork. Science-backed breathing techniques for better sleep, faster recovery, and sharper focus.">
+    <link rel="icon" type="image/png" href="./dayfluxlogo-new.png">
     <link rel="apple-touch-icon" href="./dayfluxlogo-new.png">
-    <link rel="shortcut icon" href="./dayfluxlogo-new.png">
-    
-    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         :root {
-            /* Updated to use your brand colors */
             --primary-color: #5A8DBD;
             --secondary-color: #8C7AAE;
             --accent-color: #7BA88C;
-            --dark-bg: #121A23;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --text-primary: #D0D5DA;
-            --text-secondary: #B0B6BC;
-            --text-muted: rgba(255, 255, 255, 0.6);
+            --background: #E1E6EB;
+            --surface: #CBD4DE;
+            --text-primary: #203040;
+            --text-secondary: #304156;
+            --text-muted: #B0B6BC;
             --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             --gradient-accent: linear-gradient(135deg, var(--accent-color), var(--primary-color));
         }
@@ -38,764 +29,583 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, 'Inter', sans-serif;
-            background: var(--dark-bg);
-            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.6;
-            overflow-x: hidden;
+            color: var(--text-primary);
+            background-color: #FFFFFF;
         }
-
-        /* Animated Background */
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 20% 80%, rgba(90, 141, 189, 0.3) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(140, 122, 174, 0.3) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 40%, rgba(123, 168, 140, 0.2) 0%, transparent 50%);
-            animation: backgroundShift 20s ease-in-out infinite;
-        }
-
-        @keyframes backgroundShift {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(5deg); }
-        }
-
-        /* Floating particles */
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .particle:nth-child(1) { width: 4px; height: 4px; top: 20%; left: 10%; animation-delay: 0s; }
-        .particle:nth-child(2) { width: 6px; height: 6px; top: 60%; left: 80%; animation-delay: 2s; }
-        .particle:nth-child(3) { width: 3px; height: 3px; top: 80%; left: 20%; animation-delay: 4s; }
-        .particle:nth-child(4) { width: 5px; height: 5px; top: 30%; left: 70%; animation-delay: 1s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) opacity(0.3); }
-            50% { transform: translateY(-20px) opacity(0.8); }
-        }
-
-        /* Container */
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
+            padding: 0 16px;
         }
-
+        
         /* Header */
         header {
-            padding: 20px 0;
-            position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--surface);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+        
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-size: 24px;
-            font-weight: 700;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
         }
-
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
         /* Hero Section */
         .hero {
+            padding: 100px 0;
             text-align: center;
-            padding: 80px 0 120px;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 24px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-        }
-
-        .hero .subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            font-weight: 400;
-        }
-
-        /* Logo Animation Container */
-        .logo-container {
-            width: 120px;
-            height: 120px;
-            margin: 40px auto;
-            position: relative;
-        }
-
-        .logo-circle {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse 3s ease-in-out infinite;
-            box-shadow: 0 0 40px rgba(90, 141, 189, 0.3);
-            overflow: hidden;
-            position: relative;
-            background: transparent;
-        }
-
-        .logo-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 50%;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Fallback emoji styling */
-        .logo-fallback {
-            font-size: 48px;
-            position: relative;
-            z-index: 2;
-            background: var(--gradient-accent);
-            border-radius: 50%;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(90, 141, 189, 0.3); }
-            50% { transform: scale(1.05); box-shadow: 0 0 60px rgba(90, 141, 189, 0.5); }
-        }
-
-        /* Benefits List */
-        .benefits {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin: 60px 0;
-        }
-
-        .benefit-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px 40px;
-            text-align: left;
-            transition: all 0.3s ease;
+            background: linear-gradient(135deg, var(--background) 0%, #FFFFFF 100%);
             position: relative;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            width: 100%;
         }
 
-        .benefit-card::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(90, 141, 189, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(140, 122, 174, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+        
+        .hero .highlight {
             background: var(--gradient-primary);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
+        
+        .hero p {
+            font-size: 22px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.5;
+        }
+        
+        .app-store-badge {
+            display: inline-flex;
+            width: 200px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0 auto;
+            box-shadow: 0 4px 12px rgba(90, 141, 189, 0.15);
+        }
+        
+        .app-store-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(90, 141, 189, 0.2);
+            background: var(--secondary-color);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: var(--background);
+        }
+        
+        .features h2 {
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+        
+        .features .subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 64px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px 32px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+        
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+        
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 100px 0;
+        }
+        
+        .benefits h2 {
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 64px;
+            color: var(--text-primary);
+        }
+        
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 40px 32px;
+            border-radius: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        
         .benefit-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(90, 141, 189, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
         }
-
-        .benefit-card:hover::before {
-            opacity: 0.1;
-        }
-
+        
         .benefit-icon {
             font-size: 48px;
             flex-shrink: 0;
             width: 80px;
             text-align: center;
         }
-
-        .benefit-content {
-            flex: 1;
-        }
-
-        .benefit-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
+        
+        .benefit-content h3 {
+            font-size: 24px;
             margin-bottom: 8px;
             color: var(--text-primary);
         }
-
-        .benefit-card p {
+        
+        .benefit-content p {
             color: var(--text-secondary);
-            font-size: 1rem;
             line-height: 1.6;
-            margin: 0;
         }
-
-        /* Email Capture Section - Top Version */
-        .signup-section-top {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 40px 30px;
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background: var(--background);
+        }
+        
+        .how-it-works h2 {
+            font-size: 42px;
             text-align: center;
-            margin: 40px 0;
-            position: relative;
-            overflow: hidden;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 64px;
+            color: var(--text-primary);
         }
-
-        .signup-section-top::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(90, 141, 189, 0.1), transparent);
-            animation: rotate 10s linear infinite;
-            z-index: -1;
-        }
-
-        .signup-section-top h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .signup-section-top p {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-bottom: 30px;
-        }
-        .signup-section {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 60px 40px;
-            text-align: center;
-            margin: 80px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .signup-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(90, 141, 189, 0.1), transparent);
-            animation: rotate 10s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .signup-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .signup-section p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-        }
-
-        /* Form Styles */
-        .signup-form {
-            max-width: 500px;
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 48px;
+            max-width: 900px;
             margin: 0 auto;
         }
-
-        .form-group {
-            margin-bottom: 20px;
+        
+        .step {
+            text-align: center;
         }
-
-        .form-input {
-            width: 100%;
-            padding: 18px 24px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            color: var(--text-primary);
-            font-size: 16px;
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, 'Inter', sans-serif;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 20px rgba(90, 141, 189, 0.2);
-        }
-
-        .form-input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin: 24px 0;
-            text-align: left;
-        }
-
-        .checkbox {
-            width: 20px;
-            height: 20px;
-            margin-top: 2px;
-            accent-color: var(--primary-color);
-        }
-
-        .checkbox-label {
-            color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 18px 24px;
-            background: var(--gradient-primary);
-            border: none;
-            border-radius: 12px;
+        
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-color);
             color: white;
-            font-size: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
             font-weight: 600;
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, 'Inter', sans-serif;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            margin: 0 auto 24px;
         }
-
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
+        
+        .step h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
         }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(90, 141, 189, 0.3);
+        
+        .step p {
+            color: var(--text-secondary);
         }
-
-        .submit-btn:hover::before {
-            left: 100%;
+        
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: var(--gradient-primary);
+            text-align: center;
+            color: white;
         }
-
+        
+        .cta h2 {
+            font-size: 42px;
+            margin-bottom: 24px;
+        }
+        
+        .cta p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .cta .app-store-badge {
+            background: white;
+            color: var(--text-primary);
+        }
+        
+        .cta .app-store-badge:hover {
+            background: var(--background);
+        }
+        
         /* Footer */
         footer {
-            text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 80px;
+            background: var(--text-primary);
+            color: white;
+            padding: 64px 0 32px;
         }
-
-        footer p {
-            color: var(--text-muted);
-            font-size: 14px;
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 48px;
+            margin-bottom: 48px;
         }
-
-        /* Success Message */
-        .success-message {
-            background: linear-gradient(135deg, #7BA88C, #4F8C75);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
-            display: none;
+        
+        .footer-section h4 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: var(--primary-color);
         }
-
-        .success-message.show {
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
             display: block;
-            animation: slideIn 0.5s ease;
+            padding: 6px 0;
+            transition: color 0.3s ease;
         }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        .footer-section a:hover {
+            color: var(--primary-color);
         }
-
-        /* Responsive Design */
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .hero {
-                padding: 40px 0 80px;
+            .nav-links {
+                display: none;
             }
             
-            .signup-section-top {
-                padding: 30px 20px;
-                margin: 30px 0;
+            .hero h1 {
+                font-size: 40px;
             }
             
-            .signup-section-top h2 {
-                font-size: 1.8rem;
+            .hero p {
+                font-size: 18px;
             }
             
+            .features h2, .how-it-works h2, .cta h2, .benefits h2 {
+                font-size: 32px;
+            }
+            
+            .feature-grid, .benefit-grid {
+                grid-template-columns: 1fr;
+            }
+
             .benefit-card {
                 flex-direction: column;
                 text-align: center;
-                gap: 15px;
-                padding: 30px 20px;
+                gap: 16px;
             }
 
             .benefit-icon {
                 width: auto;
             }
-            
-            .signup-section {
-                padding: 40px 20px;
-                margin: 60px 0;
-            }
-            
-            .container {
-                padding: 0 16px;
-            }
-
-            .logo-circle img {
-                width: 100%;
-                height: 100%;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="background">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-    </div>
-
     <!-- Header -->
     <header>
-        <div class="container">
-            <div class="logo">Dayflux</div>
-        </div>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="./dayfluxlogo-new.png" alt="Dayflux Logo">
+                Dayflux
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html">Terms</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Main Content -->
-    <main>
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <!-- Hero Section -->
-            <section class="hero">
-                <div class="hero-content">
-                    <h1>Guided breathwork for better sleep, faster recovery & sharper focus</h1>
-                    <p class="subtitle">Join our exclusive beta and discover the power of science-backed breathing techniques</p>
-                    
-                    <!-- Email Capture Section - Moved to Top -->
-                    <div class="signup-section-top">
-                        <h2>Join the Beta</h2>
-                        <p>Be among the first to experience Dayflux and help shape the future of mindful breathing</p>
-                        
-                        <!-- Secure Formspree Form -->
-                        <form class="signup-form" id="signupForm">
-                            <!-- Honeypot field for spam protection -->
-                            <input type="text" name="_gotcha" style="display:none !important">
-                            
-                            <div class="form-group">
-                                <input 
-                                    type="email" 
-                                    class="form-input" 
-                                    name="email"
-                                    placeholder="Enter your email address"
-                                    required
-                                    id="emailInput"
-                                    autocomplete="email"
-                                    maxlength="254"
-                                >
-                            </div>
-                            
-                            <div class="checkbox-group">
-                                <input type="checkbox" class="checkbox" name="consent" id="consent" value="yes" required>
-                                <label for="consent" class="checkbox-label">
-                                    I agree to receive the TestFlight link and beta updates from Dayflux. I understand I can unsubscribe at any time.
-                                </label>
-                            </div>
-                            
-                            <!-- Additional security fields -->
-                            <input type="hidden" name="source" value="dayflux-landing" id="sourceField">
-                            <input type="hidden" name="timestamp" value="" id="timestampField">
-                            <input type="hidden" name="user_agent" value="" id="userAgentField">
-                            
-                            <button type="submit" class="submit-btn" id="submitBtn">
-                                <i class="fas fa-rocket"></i> Get Early Access
-                            </button>
-                        </form>
-                        
-                        <div class="success-message" id="successMessage">
-                            <h3>🎉 Welcome to the Dayflux Beta!</h3>
-                            <p>Check your email for your TestFlight invitation and get ready to transform your breathing practice.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="logo-container">
-                        <div class="logo-circle" id="logoCircle">
-                            <img src="./dayfluxlogo-new.png" 
-                                 alt="Dayflux Logo" 
-                                 id="logoImage"
-                                 style="display: none;">
-                            <div class="logo-fallback" id="logoFallback">🧘‍♀️</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Benefits List -->
-                    <div class="benefits">
-                        <div class="benefit-card">
-                            <span class="benefit-icon">🌙</span>
-                            <div class="benefit-content">
-                                <h3>Better Sleep</h3>
-                                <p>Fall asleep faster with guided evening sessions designed to calm your mind and prepare your body for rest</p>
-                            </div>
-                        </div>
-                        <div class="benefit-card">
-                            <span class="benefit-icon">🔋</span>
-                            <div class="benefit-content">
-                                <h3>Faster Recovery</h3>
-                                <p>Reduce stress and inflammation with targeted breathing patterns that activate your body's natural healing response</p>
-                            </div>
-                        </div>
-                        <div class="benefit-card">
-                            <span class="benefit-icon">🧠</span>
-                            <div class="benefit-content">
-                                <h3>Sharper Focus</h3>
-                                <p>Enhance cognitive performance and mental clarity with energizing breath techniques for peak productivity</p>
-                            </div>
-                        </div>
+            <div class="hero-content">
+                <h1>Guided <span class="highlight">breathwork</span> for better sleep & recovery</h1>
+                <p>Transform your wellbeing with science-backed breathing techniques for better sleep, faster recovery, and sharper focus.</p>
+                <a href="#" class="app-store-badge">Coming Soon to App Store</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2>Transform Your Wellbeing Through Breath</h2>
+            <div class="benefit-grid">
+                <div class="benefit-card">
+                    <span class="benefit-icon">🌙</span>
+                    <div class="benefit-content">
+                        <h3>Better Sleep</h3>
+                        <p>Fall asleep faster with guided evening sessions designed to calm your mind and prepare your body for rest</p>
                     </div>
                 </div>
-            </section>
+                <div class="benefit-card">
+                    <span class="benefit-icon">🔋</span>
+                    <div class="benefit-content">
+                        <h3>Faster Recovery</h3>
+                        <p>Reduce stress and inflammation with targeted breathing patterns that activate your body's natural healing response</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">🧠</span>
+                    <div class="benefit-content">
+                        <h3>Sharper Focus</h3>
+                        <p>Enhance cognitive performance and mental clarity with energizing breath techniques for peak productivity</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Science-Backed Breathing</h2>
+            <p class="subtitle">Everything you need to build a consistent breathwork practice and unlock your potential.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🫁</div>
+                    <h3>Guided Sessions</h3>
+                    <p>Expert-designed breathing exercises with visual and audio guidance to keep you focused and relaxed.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Flexible Timing</h3>
+                    <p>Sessions from 2-20 minutes that fit seamlessly into your daily routine, morning or night.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy First</h3>
+                    <p>Your breathing data and progress stay private on your device. No accounts required.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Track Progress</h3>
+                    <p>Monitor your consistency and see how regular breathwork improves your overall wellbeing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Personalized</h3>
+                    <p>Customize sessions based on your goals - whether it's better sleep, stress relief, or focus.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌙</div>
+                    <h3>Beautiful Design</h3>
+                    <p>Calming interface that adapts to your environment and supports your mindful practice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>Start Your Practice in 3 Simple Steps</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Goal</h3>
+                    <p>Select from sleep, recovery, focus, or stress relief breathing programs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Follow the Guide</h3>
+                    <p>Let our visual and audio cues guide your breathing rhythm and technique.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Build Your Practice</h3>
+                    <p>Track your consistency and feel the benefits of regular breathwork.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Breath?</h2>
+            <p>Join thousands discovering the power of guided breathwork for better health and wellbeing.</p>
+            <a href="#" class="app-store-badge">Coming Soon to App Store</a>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Dayflux. All rights reserved. | Contact: dev.blsmdrive@gmail.com</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#">Download</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="support.html">Help Center</a></li>
+                        <li><a href="support.html#faq">FAQ</a></li>
+                        <li><a href="support.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="mailto:dev.blsmdrive@gmail.com">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dayflux. All rights reserved.</p>
+            </div>
         </div>
     </footer>
-
-    <!-- JavaScript -->
-    <script>
-        // Logo loading
-        document.addEventListener('DOMContentLoaded', function() {
-            const logoImage = document.getElementById('logoImage');
-            const logoFallback = document.getElementById('logoFallback');
-            
-            const logoUrls = [
-                './dayfluxlogo-new.png',
-                './logo-new.png',
-                './logo.png',
-                './dayflux-logo.png'
-            ];
-            
-            function tryLoadLogo(index = 0) {
-                if (index >= logoUrls.length) {
-                    console.log('All logo URLs failed, using fallback emoji');
-                    return;
-                }
-                
-                const testImg = new Image();
-                testImg.onload = function() {
-                    logoImage.src = logoUrls[index];
-                    logoImage.style.display = 'block';
-                    logoFallback.style.display = 'none';
-                    console.log('Logo loaded successfully from:', logoUrls[index]);
-                };
-                testImg.onerror = function() {
-                    console.log('Failed to load logo from:', logoUrls[index]);
-                    tryLoadLogo(index + 1);
-                };
-                testImg.src = logoUrls[index];
-            }
-            
-            // Start trying to load the logo
-            tryLoadLogo();
-        });
-
-        // Secure form submission with Formspree - Enhanced to prevent redirects
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('signupForm');
-            
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault(); // Always prevent default first
-                e.stopPropagation(); // Stop event bubbling
-                
-                const email = document.getElementById('emailInput').value;
-                const consent = document.getElementById('consent').checked;
-                const submitBtn = document.getElementById('submitBtn');
-                
-                // Client-side validation
-                if (!email || !consent) {
-                    alert('Please fill in all required fields.');
-                    return false;
-                }
-                
-                // Email validation regex
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    alert('Please enter a valid email address.');
-                    return false;
-                }
-                
-                // Populate security fields
-                document.getElementById('timestampField').value = new Date().toISOString();
-                document.getElementById('userAgentField').value = navigator.userAgent.substring(0, 200);
-                
-                // Add UTM tracking data if available
-                const urlParams = new URLSearchParams(window.location.search);
-                const utmSource = urlParams.get('utm_source');
-                const utmMedium = urlParams.get('utm_medium');
-                const utmCampaign = urlParams.get('utm_campaign');
-                
-                if (utmSource) {
-                    const sourceField = document.getElementById('sourceField');
-                    sourceField.value = `dayflux-landing (utm_source: ${utmSource}, utm_medium: ${utmMedium || 'none'}, utm_campaign: ${utmCampaign || 'none'})`;
-                }
-                
-                // Prevent double submission
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-                
-                try {
-                    // Create FormData from the form
-                    const formData = new FormData();
-                    formData.append('email', email);
-                    formData.append('consent', consent ? 'yes' : 'no');
-                    formData.append('_subject', 'New Dayflux Beta Signup!');
-                    formData.append('source', document.getElementById('sourceField').value);
-                    formData.append('timestamp', document.getElementById('timestampField').value);
-                    formData.append('user_agent', document.getElementById('userAgentField').value);
-                    
-                    // Submit to Formspree using fetch
-                    const response = await fetch('https://formspree.io/f/xanjjwde', {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-                    
-                    if (response.ok) {
-                        // Show success message
-                        document.getElementById('successMessage').classList.add('show');
-                        form.style.display = 'none';
-                        
-                        // Track the conversion
-                        if (typeof gtag !== 'undefined') {
-                            gtag('event', 'conversion', {
-                                'send_to': 'YOUR_CONVERSION_ID',
-                                'value': 1.0,
-                                'currency': 'USD'
-                            });
-                        }
-                    } else {
-                        const data = await response.json();
-                        throw new Error(data.error || 'Form submission failed');
-                    }
-                    
-                } catch (error) {
-                    console.error('Error submitting form:', error);
-                    alert('Something went wrong. Please try again or contact us directly at dev.blsmdrive@gmail.com');
-                    
-                    // Re-enable button on error
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fas fa-rocket"></i> Get Early Access';
-                }
-                
-                return false; // Extra safety to prevent form submission
-            });
-        });
-
-        // Add scroll animations
-        document.addEventListener('DOMContentLoaded', function() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            // Observe benefit cards
-            document.querySelectorAll('.benefit-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
-            });
-        });
-    </script>
-
-    <!-- Google Analytics (replace with your tracking ID) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GA_TRACKING_ID');
-    </script>
 </body>
 </html>
